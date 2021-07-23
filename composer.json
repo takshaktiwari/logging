@@ -1,0 +1,26 @@
+{
+    "name": "takshak/logging",
+    "keywords": ["laravel", "logging"],
+    "description": "Activity logging in laravel",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Takshak Tiwari",
+            "email": "takshaktiwari@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4" : {
+            "Takshak\\Logging\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Takshak\\Logging\\LoggingServiceProvider"
+            ]
+        }
+    }
+}
