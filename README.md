@@ -1,5 +1,4 @@
-
-# Introduction to Logging
+# Introduction
 
 **Logging** helps you to log the user or application activity. It records every **URL**, **Method**, **Data** with **User detail** along with his IP. You will get two drivers, **file** and **database**. File driver log the activity in a file and database driver put the logs in database. When using File driver, logs can be found in *storage/logs/user-log-(date).log*. Its creates a new file daily to log the activity.
 
