@@ -46,39 +46,49 @@ trait LoggingTrait
     	$content .= '    ';
     	$content .= request()->path();
     	$content .= '    ';
+        
     	$content .= '[';
-
-    	$user = [];
-    	$user[] = request()->ip();
-    	if(Auth::check()){
-    	    foreach(request()->user()->toArray() as $key => $value){
-    	        if (in_array($key, ['id', 'name', 'email', 'mobile', 'phone'])) {
-    	            $user[] = $value;
-    	        }
-    	    }
-    	}
-
-    	$content .= implode(', ', $user);
+    	$content .= implode(', ', $this->userData());
     	$content .= ']';
     	$content .= '    ';
-    	$content .= '[';
 
-    	$data = [];
-    	foreach(request()->all() as $key => $value){
-    	    $item = $key.': ';
+    	$content .= '[';
+    	$content .= implode(' | ', $this->requestData());
+    	$content .= ']';
+    	
+    	Storage::append($fileName, $content);
+    	return $content;
+    }
+
+    public function userData()
+    {
+        $user = [];
+        $user[] = request()->ip();
+        if(Auth::check()){
+            foreach(request()->user()->toArray() as $key => $value){
+                if (in_array($key, ['id', 'name', 'email', 'mobile', 'phone'])) {
+                    $user[] = $value;
+                }
+            }
+        }
+
+        return $user;
+    }
+
+    public function requestData($value='')
+    {
+        $data = [];
+        foreach(request()->all() as $key => $value){
+            $item = $key.': ';
             if (is_array($value)) {
                 $value = implode(', ', $value);
             }
             $item .= $value;
             
             $data[] = $item;
-    	}
-    	
-    	$content .= implode(' | ', $data);
-    	$content .= ']';
-    	
-    	Storage::append($fileName, $content);
-    	return $content;
+        }
+
+        return $data;
     }
 
 }
