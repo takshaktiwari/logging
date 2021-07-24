@@ -1,3 +1,4 @@
+
 # Introduction to Logging
 
 **Logging** helps you to log the user or application activity. It records every **URL**, **Method**, **Data** with **User detail** along with his IP. You will get two drivers, **file** and **database**. File driver log the activity in a file and database driver put the logs in database. When using File driver, logs can be found in *storage/logs/user-log-(date).log*. Its creates a new file daily to log the activity.
@@ -27,10 +28,13 @@ To log every route you need to use **LoggingTrait** in your **AppServiceProvider
     use Takshak\Logging\Traits\LoggingTrait;
     class AppServiceProvider extends ServiceProvider
     {
-    	    use LoggingTrait;
+            use LoggingTrait;
         
         public function boot()
         {
             $this->logActivity();
         }
     }
+
+
+If you are using databse for logging, you need to show this logs in any dashboard or admin panel. In that case you can use **Logging** model : **use Takshak\Logging\Models\Logging;**
