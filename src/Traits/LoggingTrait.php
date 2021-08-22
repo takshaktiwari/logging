@@ -81,7 +81,7 @@ trait LoggingTrait
         foreach(request()->all() as $key => $value){
             $item = $key.': ';
             if (is_array($value)) {
-                $value = implode(', ', $value);
+                $value = json_decode($value);
             }
             $item .= $value;
             
